@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="windows-1256" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>تسجيل الدخول</title>
+	
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' /> 
+
+	<link rel="stylesheet" href="assets/css/assets.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/font.css" />
+    <link rel="stylesheet" href="assets/css/fontello.css" />
+    
+    <script type='text/javascript' language="JavaScript">
+
+        function rem(){
+        var uname = document.getElementById('uname').value;
+        var paswd = document.getElementById('paswd').value;
+        var rem   = document.getElementById('remember').checked;
+    
+        if(rem == true){
+        var date = new Date();
+        date.setTime(date.getTime()+(5*1000));
+        var expires = date.toGMTString();
+        date.setTime(date.getTime()+(259200*1000));
+        var expire  = date.toGMTString();
+        document.cookie = 'uname='+uname+';expires='+expire+'';
+        document.cookie = 'paswd='+paswd+';expires='+expire+'';
+        document.cookie = 'error=1;expires='+expires+'';
+        }
+        else{
+        return;
+        }
+        }
+    
+        function getCookie(){
+    
+        var date = new Date();
+        date.setTime(date.getTime()+(5*1000));
+        var expires = date.toGMTString();
+    
+        var SP = document.cookie.split(';');
+        for (i=0; i < SP.length; i++) {
+        name_value = SP[i];
+        str = name_value.substring(0,6);
+        if(str.indexOf("uname") !== -1){
+        uname = name_value.split('=');
+        uname = uname[1];
+        }
+        if(str.indexOf("paswd") !== -1){
+        paswd = name_value.split('=');
+        paswd = paswd[1];
+        }
+    
+        if(str.indexOf("error") !== -1){
+        return;
+        }
+    
+        }
+    
+        if(uname != ""){
+        document.cookie = 'error=1;expires='+expires+'';
+        window.location.href='login?username='+uname+'&password='+paswd+'';
+        }
+    
+        }
+    
+       getCookie();
+    
+    </script>
+
+</head>
+
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	//<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
+<body>
+<!--<div class="logo-basheer"><img src="assets/img/logo.png"></div>-->
+    <div class="marque">
+        <marquee direction="right">
+            <span id="Bar_News"> سبحان الله وبحمده سبحان الله العظيم عدد خلقه ورضى نفسه و زنة عرشه و مداد كلماته </span>
+        </marquee>
+    </div>
+
+    
+<div id="clock">Loading...</div>  <script type="text/javascript">  function refrClock()  {  var d=new Date();  var s=d.getSeconds();  var m=d.getMinutes();  var h=d.getHours();  var day=d.getDay();  var date=d.getDate();  var month=d.getMonth();  var year=d.getFullYear();  var days=new Array("الاحد","الاثنين","الثلاثاء","الاربعاء","الخميس","الجمعة","السبت");  var months=new Array("يناير","فبراير","مارس","ابريل","ماي","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر");  var am_pm;  if (s<10) {s="0" + s}  if (m<10) {m="0" + m}  if (h>12) {h-=12;am_pm = "مساءً."}  else {am_pm="صباحاً."}  if (h<10) {h="0" + h}  document.getElementById("clock").innerHTML=days[day] + " " + date + " من " + months[month] + " " + year + "   |   الساعة الان " + h + ":" + m + ":" + s + " " + am_pm;  setTimeout("refrClock()",1000);  }  refrClock();</script>
+
+	
+    <div class="form">
+        <div class="banner">
+            <!--<img src="assets/img/banner.png">-->
+            <span id="form_title0" > مالك.نت </span>
+        </div>
+        <div class="banner2">
+                <div class="floated">
+                        <a href="prices.html"><div class="social-icon dollar">
+                            <i class="icon-dollar"></i>
+                        </div></a>
+                        <!--<div class="social-icon facebook">
+                            <i class="icon-facebook"></i>
+                        </div>-->
+                        <div class="social-icon gplus" onclick="document.getElementById('alert-phone').style.display = ('block')">
+                            <i class="icon-whatsapp"></i>
+                        </div>
+                        <div class="social-icon location" onclick="document.getElementById('alert-location').style.display = ('block')">
+                            <i class="icon-location"></i>
+                        </div>
+                    </div>
+        </div>
+		<form name="login" action="$(link-login-only)" method="post"
+		      $(if chap-id) onSubmit="return doLogin()" $(endif)>	
+		   <input type="hidden" name="dst" value="$(link-orig)" />
+		   <input type="hidden" name="popup" value="true" />	
+            <div class="input-field">
+		    	<input id='uname' onblur="this.value=removeSpaces(this.value);" type="text" placeholder="اسم المستخدم" name="username" required />
+                <div class="icon"><i class="icon-user"></i></div>
+            </div>
+            <div class="input-field">
+                <input id='paswd' onblur="this.value=removeSpaces(this.value);" type="password" placeholder="كلمة السر" name="password" />
+                <div class="icon"><i class="icon-lock"></i></div>
+            </div>
+            <div class="">
+                <input checked id='remember' type='checkbox' name='remember' value="ON">
+                <label for="remember" style="color: #f1c40f;">حفظ بيانات الكرت</label>
+            </div>
+            
+            <div class="submit">
+                <button onclick='return rem();' type="submit">تسجيل الدخول<i class="icon-login"></i></button>
+            </div>
+            <div class="footer"><p><font size="4"><a href="https://www.tvquran.com/"> 
+				     موقع تي في قران</a> </font></p></div>
+        </form>
+    </div>
+    
+   
+
+    <div class="copyright">
+	    <span style="color: #757575;">   المركز الرئيسي : </span>
+	    <span id="Address" style="color: #f05656;"> هجين </span>
+	</div>
+
+<!-- Modal -->
+$(if error)
+    <div id="alert-error" class="alert-back" onclick="this.style.display = ('none')">	
+        <div class="modal">
+            <div class="modal-icon error"><i class="icon-error"></i></div>
+            <div class="title error">رسالة خطأ:</div>
+            <div class="modal-clear"></div>
+            <div id="line"></div>
+            <div class="modal-body">
+                <p><script type="text/javascript">
+var error = "$(error)";
+if (error == "simultaneous session limit reached") {
+document.write("لا يمكن تسجيل الدخول أكثر من مرة");
+}
+else if (error == "invalid username or password") {
+document.write("خطأ في إسم المستخدم او كلمة المرور حاول مرة اخرى");
+}
+else if (error == "access denied at this time") {
+document.write("بطاقة سهرة لا يمكن استخدامها في هذا الوقت");
+}
+else if (error == "uptime limit reached") {
+document.write("عذرا لقد انتهى الوقت المتاح لك..");
+}
+else if (error == "invalid password") {
+document.write("تأكد من كتابة كلمة المرور بشكل صحيح");
+}
+else if (error == "no more sessions are allowed for user $(username)") {
+document.write("لا يمكن تسجيل الدخول اكثر من مرة");
+}
+else if (error == "no valid profile found") {
+document.write("لقد انتهت صلاحية هذه البطاقة");
+}
+else if (error == "transfer limit reached") {
+document.write("لا يمكنك تسجيل الدخول , انتهى رصيد هذه البطاقة");
+}
+else if (error == "user $(username) has reached traffic limit") {
+document.write("ا يمكنك تسجيل الدخول , انتهى رصيد هذه البطاقة");
+}
+else if (error == "invalid Calling-Station-Id") {
+document.write("هذا الحساب مقترن بجهاز آخر ");
+}
+else if (error == "user $(username) is not allowed to log in from this MAC address") {
+document.write("هذا الحساب مقترن بجهاز آخر");
+}
+else if(error.search("not found") != -1) {
+document.write("اسم المستخدم غير موجود تأكد من كتابته بشكل صحيح");
+}
+else if (error == "radius timeout") {
+document.write("عزيزي المشترك نعتذر عن انقطاع الخدمة بسبب الصيانة");
+}
+else document.write("$(error)")
+                </script></p>
+            </div>
+        </div>
+    </div>
+$(endif)
+<!-- End Modal -->
+
+<!-- Modal -->
+    <div id="alert-phone" class="alert-back" onclick="this.style.display = ('none')">	
+        <div class="modal">
+            <div class="modal-icon phone"><i class="icon-phone"></i></div>
+            <div class="title phone">أتصل بنا:</div>
+            <div class="modal-clear"></div>
+            <div id="line"></div>
+            <div class="modal-body">
+                <div >ادارة  : <p  id="Phone_Admin" > 0996355926</p></div>
+                <div >صيانة  : <p  id="Phone_Repair" > 0966172298 </p></div>
+            </div>
+        </div>
+    </div>
+<!-- End Modal -->
+
+<!-- Modal -->
+    <div id="alert-location" class="alert-back" onclick="this.style.display = ('none')">	
+        <div class="modal">
+            <div class="modal-icon place"><i class="icon-location"></i></div>
+            <div class="title place">الوكلاء و المعتمدين :</div>
+            <div class="modal-clear"></div>
+            <div id="line"></div>
+            <div class="modal-body">
+                <div>0 - <p id="titel"> -- مراكز توزيع البطاقات  -- </p></div>
+                <div>1 - <p id="titel0"> </p></div>
+                <div>2 - <p id="titel1" ></p></div>
+                <div>3 - <p id="titel2" > </p></div>
+                <div>4 - <p id="titel3" > </p></div>
+                <div>5 - <p id="titel4" > </p></div>
+                <div>6 - <p id="titel5" > </p></div>
+                <div>7 - <p id="titel6" > </p></div>
+            </div>
+        </div>
+    </div>
+<!-- End Modal -->
+
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js" ></script>
+<!--<script type="text/javascript" src="assets/js/castom.js" ></script>-->
+
+<script type="text/javascript" >
+// function remove Spaces in Input
+function removeSpaces(string) {
+ return string.split(' ').join('');
+}
+// Hide Placeholder on Form Focaus
+    $('[placeholder]').focus(function(){
+        $(this).attr('data-text', $(this).attr('placeholder'));
+        $(this).attr('placeholder', '');
+
+      }).blur(function(){
+          $(this).attr('placeholder', $(this).attr('data-text'));
+    });
+</script>
+
+</body>
+
+</html>
